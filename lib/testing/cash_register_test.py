@@ -106,7 +106,7 @@ class TestCashRegister:
       '''subtracts the last item from the total'''
       self.cash_register.add_item("apple", 0.99)
       self.cash_register.add_item("tomato", 1.76)
-      self.cash_register.void_last_transaction()
+      self.cash_register.void_last_transaction() 
       assert(self.cash_register.total == 0.99)
       self.reset_register_totals()
 
