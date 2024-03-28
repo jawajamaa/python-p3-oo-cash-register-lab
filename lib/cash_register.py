@@ -4,6 +4,7 @@ class CashRegister:
   def __init__(self, discount = 0):
     self.discount = discount
     self.items = list()
+    # self.items_total = dict() can't use; needs to be unique key...
     self.total = 0
     
   @property
@@ -14,18 +15,11 @@ class CashRegister:
   def discount(self, discount):
     if isinstance(discount, int) and discount >= 0:
       self._discount = discount
-    # if isinstance(total, int) and total >= 0:
-    #   self._total = total
 
   def add_item(self, title, price, quantity = 1):
     self.total = self.total + (price*quantity)
-
-
-    # if self.discount == 0:
-    #   self.total = self.total + (price*quantity)
-    # else:
-    #   self.total = (self.total + (price*quantity)) - ((self.discount/100) * self.total)
-  
+    for item in range(quantity):
+      self.items.append(title)
 
   def apply_discount(self):
     if self.discount == 0:
@@ -34,3 +28,16 @@ class CashRegister:
     else: 
       self.total -= ((self.discount/100) * self.total)
       print(f"After the discount, the total comes to ${round(self.total)}.")
+
+  def void_last_transaction(self):
+    item_to_void = self.items[-1] 
+    breakpoint()
+    self.items = [elem for elem in self.items if elem != item_to_void]
+    breakpoint()
+    # self.items.reverse()
+    # for index, a in enumerate(self.items):
+    #   for b in self.items[index+1]:
+    #     if a != b: 
+    #       self.items.reverse().pop()
+    #     else:
+          
